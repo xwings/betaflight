@@ -140,7 +140,9 @@ typedef enum {
 #ifdef USE_OSD
     TABLE_OSD_LOGO_ON_ARMING,
 #endif
-
+#ifdef USE_RX_EXPRESSLRS
+    TABLE_FREQ_DOMAIN,
+#endif
     LOOKUP_TABLE_COUNT
 } lookupTableIndex_e;
 
