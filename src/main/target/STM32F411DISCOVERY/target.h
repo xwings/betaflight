@@ -40,6 +40,14 @@
 #define SPI1_MISO_PIN           PA6
 #define SPI1_MOSI_PIN           PA7
 
+// XWINGSLRS
+#define USE_SPI_DEVICE_3
+#define SPI3_SCK_PIN            PB3
+#define SPI3_MISO_PIN           PB5
+#define SPI3_MOSI_PIN           PB4
+#define SPI3_NSS_PIN            PD7
+
+
 #define USE_GYRO
 
 #define USE_GYRO_L3GD20
@@ -111,3 +119,9 @@
 
 #define USABLE_TIMER_CHANNEL_COUNT 8
 #define USED_TIMERS             ( TIM_N(1) | TIM_N(2) | TIM_N(3) | TIM_N(4) )
+
+#define USE_RX_EXPRESSLRS
+#define USE_RX_SX1280
+#if !defined(STM32F745)
+#define USE_RX_SX127X
+#endif
