@@ -6,5 +6,8 @@ TARGET_SRC = \
             drivers/accgyro/accgyro_spi_l3gd20.c \
             drivers/accgyro_legacy/accgyro_lsm303dlhc.c \
             drivers/compass/compass_hmc5883l.c \
-            drivers/compass/compass_qmc5883l.c
-
+            drivers/compass/compass_qmc5883l.c \
+            rx/expresslrs_common.c \
+            rx/expresslrs.c \
+            drivers/rx/rx_sx127x.c \
+            drivers/rx/rx_sx1280.c
