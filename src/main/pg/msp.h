@@ -20,19 +20,12 @@
 
 #pragma once
 
-#include "drivers/display.h"
+#include "drivers/io_types.h"
 
-#include "pg/displayport_profiles.h"
+#include "pg/pg.h"
 
-// MSP Display Port commands
-#define MSP_DP_RELEASE      1
-#define MSP_DP_CLEAR_SCREEN 2
-#define MSP_DP_WRITE_STRING 3
-#define MSP_DP_DRAW_SCREEN  4
+typedef struct mspConfig_s {
+    uint8_t halfDuplex; // allow msp to operate in half duplex mode
+} mspConfig_t;
 
-// MSP displayport V2 attribute byte bit functions
-#define DISPLAYPORT_MSP_ATTR_VERSION BIT(7) // Format indicator; must be zero for V2 (and V1)
-#define DISPLAYPORT_MSP_ATTR_BLINK   BIT(6) // Device local blink
-#define DISPLAYPORT_MSP_ATTR_MASK    (~(DISPLAYPORT_MSP_ATTR_VERSION|DISPLAYPORT_MSP_ATTR_BLINK))
-
-struct displayPort_s *displayPortMspInit(void);
+PG_DECLARE(mspConfig_t, mspConfig);

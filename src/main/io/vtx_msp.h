@@ -20,19 +20,16 @@
 
 #pragma once
 
-#include "drivers/display.h"
+#include <stdint.h>
 
-#include "pg/displayport_profiles.h"
+#include "build/build_config.h"
 
-// MSP Display Port commands
-#define MSP_DP_RELEASE      1
-#define MSP_DP_CLEAR_SCREEN 2
-#define MSP_DP_WRITE_STRING 3
-#define MSP_DP_DRAW_SCREEN  4
+typedef enum {
+    // Offline - device hasn't responded yet
+    MSP_VTX_STATUS_OFFLINE = 0,
+    MSP_VTX_STATUS_READY,
+} mspVtxStatus_e;
 
-// MSP displayport V2 attribute byte bit functions
-#define DISPLAYPORT_MSP_ATTR_VERSION BIT(7) // Format indicator; must be zero for V2 (and V1)
-#define DISPLAYPORT_MSP_ATTR_BLINK   BIT(6) // Device local blink
-#define DISPLAYPORT_MSP_ATTR_MASK    (~(DISPLAYPORT_MSP_ATTR_VERSION|DISPLAYPORT_MSP_ATTR_BLINK))
-
-struct displayPort_s *displayPortMspInit(void);
+bool vtxMspInit(void);
+void setMspVtxDeviceStatusReady(const int descriptor);
+void prepareMspFrame(uint8_t *mspFrame);

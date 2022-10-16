@@ -161,6 +161,7 @@ typedef enum {
     OSD_TOTAL_FLIGHTS,
     OSD_UP_DOWN_REFERENCE,
     OSD_TX_UPLINK_POWER,
+    OSD_WATT_HOURS_DRAWN,
     OSD_ITEM_COUNT // MUST BE LAST
 } osd_items_e;
 
@@ -200,6 +201,7 @@ typedef enum {
     OSD_STAT_TOTAL_TIME,
     OSD_STAT_TOTAL_DIST,
     OSD_STAT_MIN_RSSI_DBM,
+    OSD_STAT_WATT_HOURS_DRAWN,
     OSD_STAT_COUNT // MUST BE LAST
 } osd_stats_e;
 
@@ -259,9 +261,9 @@ typedef enum {
 // Make sure the number of warnings do not exceed the available 32bit storage
 STATIC_ASSERT(OSD_WARNING_COUNT <= 32, osdwarnings_overflow);
 
-#define ESC_RPM_ALARM_OFF -1
-#define ESC_TEMP_ALARM_OFF INT8_MIN
-#define ESC_CURRENT_ALARM_OFF -1
+#define ESC_RPM_ALARM_OFF         -1
+#define ESC_TEMP_ALARM_OFF         0
+#define ESC_CURRENT_ALARM_OFF     -1
 
 #define OSD_GPS_RESCUE_DISABLED_WARNING_DURATION_US 3000000 // 3 seconds
 
@@ -282,7 +284,7 @@ typedef struct osdConfig_s {
     uint8_t ahMaxPitch;
     uint8_t ahMaxRoll;
     uint32_t enabled_stats;
-    int8_t esc_temp_alarm;
+    uint8_t esc_temp_alarm;
     int16_t esc_rpm_alarm;
     int16_t esc_current_alarm;
     uint8_t core_temp_alarm;
@@ -326,6 +328,7 @@ typedef struct statistic_s {
     int32_t max_altitude;
     int16_t max_distance;
     float max_g_force;
+    int16_t max_esc_temp_ix;
     int16_t max_esc_temp;
     int32_t max_esc_rpm;
     uint16_t min_link_quality;
